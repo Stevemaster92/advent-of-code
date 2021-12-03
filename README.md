@@ -1,8 +1,7 @@
-# Advent of Code
+# 🎄 Advent of Code 🎄
 
-Checkout the current [event](https://adventofcode.com).
+## 2021
 
-## Puzzles
+Checkout the [event](https://adventofcode.com/2021).
 
--   2021:
-    -   [01](https://github.com/Stevemaster92/advent-of-code/01)
+-   Day 1: [Code](https://github.com/Stevemaster92/advent-of-code/01), [Puzzle](https://adventofcode.com/2021/day/1)
