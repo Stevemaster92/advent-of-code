@@ -5,7 +5,6 @@ const commands = input.split("\n");
 
 let horizontalPosition = 0;
 let depth = 0;
-let aim = 0;
 
 // Problem 1
 // commands.forEach((cmd) => {
@@ -21,6 +20,8 @@ let aim = 0;
 // });
 
 // Problem 2
+let aim = 0;
+
 commands.forEach((cmd) => {
     const [dir, units] = cmd.split(" ");
 
