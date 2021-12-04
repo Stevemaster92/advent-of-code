@@ -1,6 +1,6 @@
-import { readFileSync } from "fs";
+const fs = require("fs");
 
-const input = readFileSync("./input.txt", "utf-8");
+const input = fs.readFileSync("./input.txt", "utf-8");
 const measurements = input.split("\n").map((m) => +m);
 
 let increases = 0;
