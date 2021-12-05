@@ -1,9 +1,7 @@
-const fs = require("fs");
+const helpers = require("../helpers");
 
-const input = fs.readFileSync("./input.txt", "utf-8");
-const lines = input.split("\n");
+const lines = helpers.readLines();
 const numbers = lines[0].split(",").map((n) => +n);
-
 const boards = createBoards();
 
 // Problem 1

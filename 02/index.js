@@ -1,8 +1,6 @@
-const fs = require("fs");
+const helpers = require("../helpers");
 
-const input = fs.readFileSync("./input.txt", "utf-8");
-const commands = input.split("\n");
-
+const commands = helpers.readLines();
 let horizontalPosition = 0;
 let depth = 0;
 

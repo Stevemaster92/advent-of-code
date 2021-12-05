@@ -1,8 +1,6 @@
-const fs = require("fs");
+const helpers = require("../helpers");
 
-const input = fs.readFileSync("./input.txt", "utf-8");
-const measurements = input.split("\n").map((m) => +m);
-
+const measurements = helpers.readLines().map((m) => +m);
 let increases = 0;
 
 // Problem 1

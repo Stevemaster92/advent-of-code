@@ -1,8 +1,6 @@
-const fs = require("fs");
+const helpers = require("../helpers");
 
-const input = fs.readFileSync("./input.txt", "utf-8");
-const lines = input.split("\n");
-
+const lines = helpers.readLines();
 const vents = createVents();
 const diagram = {};
 

@@ -1,13 +1,11 @@
-const fs = require("fs");
+const helpers = require("../helpers");
 
-const input = fs.readFileSync("./input.txt", "utf-8");
-const lines = input.split("\n");
-
-let gamma = "",
-    epsilon = "";
-const rowLength = lines[0].length - 1; // without \n or \r
+const lines = helpers.readLines();
+const rowLength = lines[0].trim().length;
 
 // Problem 1
+// let gamma = "",
+//     epsilon = "";
 // for (let i = 0; i < rowLength; i++) {
 //     let ones = 0,
 //         zeros = 0;
