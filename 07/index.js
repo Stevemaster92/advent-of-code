@@ -5,37 +5,26 @@ const crabs = helpers
     .split(",")
     .map((f) => +f);
 
-// Problem 1
-// const dist = calcMinDistance((a, b) => Math.abs(a - b));
+const dist = {};
+let minDist = Number.MAX_VALUE;
 
-// Problem 2
-const dist = calcMinDistance((a, b) => {
-    const abs = Math.abs(a - b);
-
-    return ((abs + 1) * abs) / 2;
-});
-
-console.log(dist);
-
-// Helper functions
 // Calculate distances between each pair of crabs.
-function calcMinDistance(stepFun) {
-    const dist = {};
-    let min = Number.MAX_VALUE;
+for (let i = 0; i < crabs.length; i++) {
+    const current = crabs[i];
 
-    for (let i = 0; i < crabs.length; i++) {
-        const current = crabs[i];
+    // Avoid calculating distance twice.
+    if (dist[current]) continue;
 
-        // Avoid calculating distance twice.
-        if (dist[current]) continue;
-
-        dist[current] = 0;
-        for (let j = 0; j < crabs.length; j++) {
-            dist[current] += stepFun(current, crabs[j]);
-        }
-
-        min = Math.min(min, dist[current]);
+    dist[current] = 0;
+    for (let j = 0; j < crabs.length; j++) {
+        // Problem 1
+        // dist[current] += Math.abs(current - crabs[j]);
+        // Problem 2
+        const abs = Math.abs(current - crabs[j]);
+        dist[current] += ((abs + 1) * abs) / 2;
     }
 
-    return min;
+    minDist = Math.min(minDist, dist[current]);
 }
+
+console.log(minDist);
