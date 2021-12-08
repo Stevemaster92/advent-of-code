@@ -1,7 +1,7 @@
 const helpers = require("../helpers");
 
 const lines = helpers.readLines();
-const rowLength = lines[0].trim().length;
+const rowLength = lines[0].length;
 
 // Problem 1
 // let gamma = "",
