@@ -11,3 +11,5 @@ Checkout the [event](https://adventofcode.com/2021).
 -   Day 5: [Code](https://github.com/Stevemaster92/advent-of-code/tree/main/05), [Puzzle](https://adventofcode.com/2021/day/5)
 -   Day 6: [Code](https://github.com/Stevemaster92/advent-of-code/tree/main/06), [Puzzle](https://adventofcode.com/2021/day/6)
 -   Day 7: [Code](https://github.com/Stevemaster92/advent-of-code/tree/main/07), [Puzzle](https://adventofcode.com/2021/day/7)
+-   Day 8: [Code](https://github.com/Stevemaster92/advent-of-code/tree/main/08), [Puzzle](https://adventofcode.com/2021/day/8)
+-   Day 9: [Code](https://github.com/Stevemaster92/advent-of-code/tree/main/09), [Puzzle](https://adventofcode.com/2021/day/9)
