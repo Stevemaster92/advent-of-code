@@ -1,13 +1,11 @@
-const math = require("mathjs");
 const helpers = require("../helpers");
 
 const lines = helpers.readLines();
 
-let parseFolds = false;
+// Determine folds and size of matrix.
 const folds = [];
 let maxX, maxY;
-
-// Determine folds and size of matrix.
+let parseFolds = false;
 for (let i = 0; i < lines.length || (!maxX && !maxY); i++) {
     const line = lines[i];
 
@@ -24,50 +22,64 @@ for (let i = 0; i < lines.length || (!maxX && !maxY); i++) {
 }
 
 // Initialize matrix with dots (1 = dot).
-let matrix = math.zeros(maxY, maxX);
+let mat = Array(maxY)
+    .fill()
+    .map(() => Array(maxX).fill(0));
+
 for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
     if (line === "") break;
 
     const [x, y] = line.split(",");
-    matrix.subset(math.index(+y, +x), 1);
+    mat[+y][+x] = 1;
 }
 
 // Problem 1
-// Fold the paper once.
-// const folded = fold(matrix, folds[0]);
-// // Count dots (= value > 0).
-// console.log(
-//     math
-//         .flatten(folded)
-//         .toArray()
-//         .reduce((pre, cur) => (cur > 0 ? pre + 1 : pre)),
-// );
+// Fold the paper once and count dots.
+// const folded = fold(mat, folds[0]);
+// console.log(folded.flat().reduce((pre, cur) => (cur === 1 ? pre + 1 : pre)));
 
 // Problem 2
-// Fold the paper accordingly.
-const folded = folds.reduce(fold, matrix);
-// Pretty print matrix.
-folded
-    .map((value) => (value > 0 ? "#" : value))
-    .toArray()
-    .forEach((row) => console.log(row.join(" ")));
+// Fold the paper accordingly and print matrix.
+const folded = folds.reduce(fold, mat);
+helpers.printMatrix(folded);
 
 // Helper functions
 function fold(mat, fold) {
-    const [m, n] = math.size(mat);
+    const m = mat.length;
+    const n = mat[0].length;
 
-    let a, b, c;
     if (fold.axis === "x") {
-        a = math.subset(mat, math.index(math.range(0, m.value), math.range(0, fold.value)));
-        b = math.subset(mat, math.index(math.range(0, m.value), math.range(fold.value + 1, n.value)));
-        c = b.toArray().map((row) => row.reverse());
-    } else {
-        a = math.subset(mat, math.index(math.range(0, fold.value), math.range(0, n.value)));
-        b = math.subset(mat, math.index(math.range(fold.value + 1, m.value), math.range(0, n.value)));
-        c = b.toArray().reverse();
-    }
+        // Reverse columns.
+        const rev = mat.map((row) => row.slice().reverse());
+        foldMatrix(mat, rev, m, fold.value);
 
-    return math.add(a, math.matrix(c));
+        // Cut off matrix along the x-fold.
+        return mat.map((row) => row.slice(0, fold.value));
+    } else {
+        // Reverse rows.
+        const rev = mat.slice(fold.value + 1, m).reverse();
+        foldMatrix(mat, rev, fold.value, n);
+
+        // Cut off matrix along the y-fold.
+        return mat.slice(0, fold.value);
+    }
+}
+
+/**
+ * Folds matrix b over matrix a.
+ * @param {any[][]} a Matrix to fold over.
+ * @param {any[][]} b Matrix which is fold over.
+ * @param {number} m Number of rows.
+ * @param {number} n Number of columns.
+ */
+function foldMatrix(a, b, m, n) {
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (a[i][j] === 1 || b[i][j] === 1) {
+                a[i][j] = 1;
+            }
+        }
+    }
 }
