@@ -20,5 +20,8 @@
     "homepage": "https://github.com/Stevemaster92/advent-of-code#readme",
     "devDependencies": {
         "eslint": "^8.4.0"
+    },
+    "dependencies": {
+        "mathjs": "^10.0.1"
     }
 }

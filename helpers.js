@@ -8,4 +8,12 @@ function readLines(path = "./input.txt") {
     return read(path).split("\n");
 }
 
-module.exports = { read, readLines };
+function printArray(arr) {
+    console.log(arr.join(" "));
+}
+
+function printMatrix(mat) {
+    mat.forEach(printArray);
+}
+
+module.exports = { read, readLines, printArray, printMatrix };
