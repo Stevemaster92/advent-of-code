@@ -9,24 +9,26 @@ for (let i = 2; i < lines.length; i++) {
     rules[left] = right;
 }
 
-const arr = template.split("");
-for (let step = 0; step < 15; step++) {
-    for (let i = 0; i < arr.length; i++) {
-        const pair = arr[i] + arr[i + 1];
+for (let step = 0; step < 10; step++) {
+    const str = template;
+    let next = "";
+
+    for (let i = 0; i < str.length; i++) {
+        const pair = str[i] + str[i + 1];
 
         if (rules[pair]) {
-            arr.splice(i, 2, arr[i], rules[pair], arr[i + 1]);
-            i++;
+            next += str[i] + rules[pair];
         }
     }
+
+    template = next + template[template.length - 1];
 }
 
-const counts = Object.values(
-    arr.reduce((pre, cur) => {
-        pre[cur] = pre[cur] + 1 || 1;
+const counts = {};
+for (let i = 0; i < template.length; i++) {
+    counts[template[i]] = counts[template[i]] + 1 || 1;
+}
 
-        return pre;
-    }, {}),
-);
+const values = Object.values(counts);
 
-console.log(Math.max(...counts) - Math.min(...counts));
+console.log(Math.max(...values) - Math.min(...values));
